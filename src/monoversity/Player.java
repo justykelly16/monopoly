@@ -28,11 +28,6 @@ public class Player {
 		this.playerBalance = playerBalance;
 	}
 
-	public Player(String playerName) {
-		this.playerName = playerName;
-
-	}
-
 	/**
 	 * @return the playerName
 	 */
@@ -46,11 +41,18 @@ public class Player {
 	 * @param playerName
 	 *            the playerName to set
 	 */
-	public void setPlayerName(String playerName) {
+	public void setPlayerName(String playerName)throws IllegalArgumentException {
+		if((playerName!=null) && (playerName.trim().length()>=MIN_NAME_LENGTH) && (playerName.trim().length() <=MAX_NAME_LENGTH) ) {
 		this.playerName = playerName;
+		}else {
+			throw new IllegalArgumentException("Inavalid name");
+		}
 
 	}
-
+	/**
+	 * Returns the player's balance
+	 * @return
+	 */
 	public int getPlayerBalance() {
 		return playerBalance;
 	}
@@ -59,7 +61,10 @@ public class Player {
 	 * @param playerBalance
 	 *            the playerBalance to set
 	 */
-	public void setPlayerBalance(int playerBalance) {
+	public void setPlayerBalance(int playerBalance) throws IllegalArgumentException {
+		
+		
+		
 		this.playerBalance = playerBalance;
 	}
 
@@ -101,13 +106,18 @@ public class Player {
 			if (maxCashAvailable > payout) {
 				setPlayerBalance(getPlayerBalance() + payout);
 				maxCashAvailable -= payout;
-				System.out.println("You have passed Go £" + payout + "has been added to your balance");
+				System.out.println("You have passed Go on the way so £" + payout + " has been added to your balance,\n");
 			} else {
 				System.out.println("You have passed GO however the bank is empty. You have collected no money");
 			}
 		} else if (currentLocation - (8 - diceNumber) == 8) {
 			currentLocation = 0;
-		} else {
+			if (maxCashAvailable > payout) {
+				setPlayerBalance(getPlayerBalance() + payout);
+				maxCashAvailable -= payout;
+				System.out.println("You have Landed Go so £" + payout + " has been added to your balance,\n");
+		} 
+		}else {
 			currentLocation = (currentLocation + diceNumber);
 		}
 
