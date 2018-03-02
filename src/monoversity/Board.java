@@ -28,7 +28,7 @@ public class Board {
 	public void Play() {
 		// populating board square data
 		ISquare go = new GoSquare("Go", 1);
-		ISquare csb = new PropertySquare("csb", 120, 24, 2,1);
+		ISquare csb = new PropertySquare("CSB", 120, 24, 2,1);
 		ISquare dkb = new PropertySquare("DKB", 130, 26, 3,2);
 		ISquare pec = new PropertySquare("PEC", 140, 28, 4,3);
 		ISquare fps = new FreeParking("Free Parking", 5);
