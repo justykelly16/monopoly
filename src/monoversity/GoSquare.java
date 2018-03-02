@@ -6,45 +6,25 @@ package monoversity;
  */
 
 
-public class GoSquare implements ISquare {
-	// Public properties
-	private String Name;
-	private int boardLocation;
+public class GoSquare extends Square implements ISquare {
+	
+	
 
-	public final String getName() {
-		return Name;
+	/**
+	 * 
+	 */
+	public GoSquare() {
+		super();
+		
 	}
 
 	/**
-	 * Constructor with Arguments
 	 * @param name
 	 * @param boardLocation
 	 */
 	public GoSquare(String name, int boardLocation) {
-		super();
-		Name = name;
-		this.boardLocation = boardLocation;
-	}
-	/**
-	 * sets the name of the GO square
-	 */
-	public final void setName(String value) {
-		Name = value;
-	}
-	/**
-	 * Gets the board location of the GO Square
-	 */
-	@Override
-	public int getBoardLocation() {
-		return boardLocation;
-	}
-	
-	/**
-	 * Sets the board location of the GO Square
-	 */
-	@Override
-	public void setBoardLocation(int boardLocation) {
-		this.boardLocation = boardLocation;
+		super(name, boardLocation);
+		
 	}
 
 	/**
