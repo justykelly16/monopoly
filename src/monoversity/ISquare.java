@@ -13,8 +13,10 @@ public interface ISquare {
 	 * Method to get and set each square name
 	 * @return
 	 */
-	String getName();
-	void setName(String value);
+	/*String getName();
+	
+	
+	void setName(String name);
 	
 	
 	/**
@@ -28,9 +30,9 @@ public interface ISquare {
 	 * Methods to get and set the board location for each square
 	 * @return
 	 */
-	int getBoardLocation();
+	/*int getBoardLocation();
 	void setBoardLocation(int value);
-	
+	*/
 	
 
 }
