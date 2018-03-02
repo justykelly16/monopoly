@@ -59,13 +59,13 @@ public class RollDice {
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("Do you wish to roll (Press Y for yes, or or N for no then Enter)");
+		System.out.println("Do you wish to roll the dice? (Press Y for yes, or or N for no then Enter)");
 
 		if (scanner.next().equalsIgnoreCase("y")) {
 			// pm1.setPlayerTurn(true);
 			diceNumber = (randomGenerator.nextInt(NUM_FACES) + 1);
 			this.setDiceNumber(diceNumber);
-			System.out.println("You rolled a " + diceNumber);
+			System.out.println("You rolled a " + diceNumber +"\n");
 
 		} else if (scanner.next().equalsIgnoreCase("n")) {
 			System.out.println("You have chosen not to roll, Game over");
