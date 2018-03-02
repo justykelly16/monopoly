@@ -6,10 +6,8 @@ package monoversity;
  *
  */
 
-public class FreeParking implements ISquare {
+public class FreeParking extends Square implements ISquare {
 
-	private String Name;
-	private int boardLocation;
 
 	/**
 	 * Default Constructor
@@ -19,43 +17,12 @@ public class FreeParking implements ISquare {
 	}
 
 	/**
-	 * Constructor with args
-	 * 
 	 * @param name
 	 * @param boardLocation
 	 */
 	public FreeParking(String name, int boardLocation) {
-		this.setName(name);
-		this.setBoardLocation(boardLocation);
-	}
-
-	/**
-	 * Gets the name of the square
-	 */
-	public final String getName() {
-		return Name;
-	}
-
-	/**
-	 * sets the name of the square
-	 */
-	public final void setName(String value) {
-		Name = value;
-	}
-
-	/**
-	 * @return the boardLocation
-	 */
-	public int getBoardLocation() {
-		return boardLocation;
-	}
-
-	/**
-	 * @param boardLocation
-	 *            the boardLocation to set
-	 */
-	public void setBoardLocation(int boardLocation) {
-		this.boardLocation = boardLocation;
+		super(name, boardLocation);
+		
 	}
 
 	/**
@@ -63,6 +30,7 @@ public class FreeParking implements ISquare {
 	 */
 	@Override
 	public void Modify(Player players) {
+		System.out.printf("You landed on the %s square.\n", this.getName());
 		System.out.println("Park up, get your laptop out and do some project work!");
 
 	}
