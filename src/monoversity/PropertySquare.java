@@ -9,27 +9,38 @@ import monoversity.Player;;
 
 public class PropertySquare extends Square implements ISquare {
 	// Public properties
-	private String Name;
+	
 
 	// Private fields
 	private Player owner;
 
-	private static final int PRICE_HOUSE = 50;
+	private int priceOfHouse = 50;
 	private int rentMultiplier = 1;
 	private int numberOfHouses;
 	private int price;
 	private int rent;
 	
 	
+	public final static int MIN_RENT_MULTIPLIER = 1;
+	public final static int MAX_RENT_MULTIPLIER = 5;
+	public final static int MIN_NUMBER_OF_HOUSES =0;
+	public final static int MAX_NUMBER_OF_HOUSES=4;
+	public final static int MIN_PRICE = 0;
+	public final static int MAX_PRICE = 200;
+	public final static int MIN_RENT = 24;
+	public final static int MAX_RENT = 400;
+	public final static int MIN_PRICE_OF_HOUSE = 50;
+	public final static int MAX_PRICE_OF_HOUSE = 150;
+	
+	
 	
 
 
 	/**
-	 * 
+	 * Default constructor
 	 */
 	public PropertySquare() {
-		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	/**
@@ -42,14 +53,107 @@ public class PropertySquare extends Square implements ISquare {
 	 */
 	public PropertySquare(String name, int boardLocation, int price, int rent) {
 		super(name, boardLocation);
-		this.price = price;
-		this.rent = rent;
+		this.setPrice(price);
+		this.setRent(rent);
 		
 	}
 
 
 
 
+
+
+	/**
+	 * @return the rentMultiplier
+	 */
+	public int getRentMultiplier() {
+		return rentMultiplier;
+	}
+
+	/**
+	 * @param rentMultiplier the rentMultiplier to set
+	 */
+	public void setRentMultiplier(int rentMultiplier) throws IllegalArgumentException{
+		if(rentMultiplier>=MIN_RENT_MULTIPLIER && rentMultiplier<=MAX_RENT_MULTIPLIER) {
+		this.rentMultiplier = rentMultiplier;
+		}else {
+			throw new IllegalArgumentException("invalid entry");
+		}
+	}
+
+	/**
+	 * @return the numberOfHouses
+	 */
+	public int getNumberOfHouses() {
+		return numberOfHouses;
+	}
+
+	/**
+	 * @param numberOfHouses the numberOfHouses to set
+	 */
+	public void setNumberOfHouses(int numberOfHouses) throws IllegalArgumentException{
+		if(numberOfHouses>=MIN_NUMBER_OF_HOUSES&&numberOfHouses<=MAX_NUMBER_OF_HOUSES) {
+		this.numberOfHouses = numberOfHouses;
+		}else {
+			throw new IllegalArgumentException("invalid number of houses");
+		}
+	}
+
+	/**
+	 * @return the price
+	 */
+	public int getPrice() {
+		return price;
+	}
+
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(int price) throws IllegalArgumentException{
+		if(price>=MIN_PRICE&&price<=MAX_PRICE) {
+		this.price = price;
+		}else {
+			throw new IllegalArgumentException("Invalid price");
+		}
+	}
+
+	/**
+	 * @return the rent
+	 */
+	public int getRent() {
+		return rent;
+	}
+
+	/**
+	 * @param rent the rent to set
+	 */
+	public void setRent(int rent)throws IllegalArgumentException{
+		if(rent>=MIN_RENT&&rent<=MAX_RENT) {
+		this.rent = rent;
+		}else {
+			throw new IllegalArgumentException("Invalid amount");
+		}
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public int getPriceOfHouse() {
+		return priceOfHouse;
+	}
+	
+	/**
+	 * 
+	 * @param priceOfHouse
+	 */
+	public void setPriceOfHouse(int priceOfHouse) throws IllegalArgumentException {
+		if(priceOfHouse>=MIN_PRICE_OF_HOUSE&&priceOfHouse<=MAX_PRICE_OF_HOUSE) {
+		this.priceOfHouse = priceOfHouse;
+		}else {
+			throw new IllegalArgumentException("invalid price of house");
+		}
+	}
+	
 	/**
 	 * Modifies the players details when they land on this square
 	 */
@@ -77,7 +181,7 @@ public class PropertySquare extends Square implements ISquare {
 				BuyProperty(players);
 			}
 		} else {
-			System.out.println("You have landed on the " + this.Name
+			System.out.println("You have landed on the " + this.getName()
 					+ " square, this property is available to buy, but you don't have enough money.");
 		}
 	}
@@ -108,7 +212,7 @@ public class PropertySquare extends Square implements ISquare {
 		players.setPlayerBalance(players.getPlayerBalance() - price);
 		owner = players;
 
-		System.out.printf("%s nows owns the %s square.\n", players.playerName, this.Name);
+		System.out.printf("%s nows owns the %s square.\n", players.playerName, this.getName());
 		System.out.println("Your current balance is now : £" + players.getPlayerBalance());
 	}
 
@@ -120,10 +224,10 @@ public class PropertySquare extends Square implements ISquare {
 	public void CheckIfOwnerCanBuyHouse(Player player) {
 		System.out.println("You own this property.");
 
-		if (this.numberOfHouses < 4) {
-			if (player.getPlayerBalance() > PRICE_HOUSE) {
+		if (this.numberOfHouses < MAX_NUMBER_OF_HOUSES ) {
+			if (player.getPlayerBalance() > this.priceOfHouse) {
 				System.out.printf("This property currently has %d floors.\n" ,this.numberOfHouses);
-				System.out.printf("Would you like to buy one for £%s? (Yes/No)" + "\r\n", PRICE_HOUSE);
+				System.out.printf("Would you like to buy one for £%s? (Yes/No)" + "\r\n", this.priceOfHouse);
 
 				@SuppressWarnings("resource")
 				String buyHouse = new Scanner(System.in).nextLine().trim();
@@ -142,7 +246,7 @@ public class PropertySquare extends Square implements ISquare {
 	 * @param players
 	 */
 	public void BuyHouse(Player players) {
-		players.setPlayerBalance(players.getPlayerBalance() - PRICE_HOUSE);
+		players.setPlayerBalance(players.getPlayerBalance() - this.priceOfHouse);
 		numberOfHouses++;
 		rentMultiplier++;
 
@@ -166,5 +270,7 @@ public class PropertySquare extends Square implements ISquare {
 		
 		
 	}
+
+
 
 }

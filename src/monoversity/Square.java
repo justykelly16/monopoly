@@ -10,6 +10,12 @@ package monoversity;
 public abstract class Square implements ISquare {
 	private String name;
 	private int boardLocation;
+	
+	public final static int MIN_NAME_LENGTH = 1;
+	public final static int MAX_NAME_LENGTH = 20;
+	public final static int MIN_BOARD_LOCATION =1;
+	public final static int MAX_BOARD_LOCATION =8;
+	
 
 	/**
 	 * 
@@ -23,9 +29,9 @@ public abstract class Square implements ISquare {
 	 * @param boardLocation
 	 */
 	public Square(String name, int boardLocation) {
-		super();
-		this.name = name;
-		this.boardLocation = boardLocation;
+		
+		this.setName(name);
+		this.setBoardLocation(boardLocation);;
 	}
 
 	/**
@@ -38,8 +44,12 @@ public abstract class Square implements ISquare {
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
+	public void setName(String name) throws IllegalArgumentException {
+		if((name!=null) && (name.trim().length()>=MIN_NAME_LENGTH) && (name.trim().length()<=MAX_NAME_LENGTH)){
 		this.name = name;
+		}else {
+			throw new IllegalArgumentException("Invalid name");
+		}
 	}
 
 	/**
@@ -52,8 +62,12 @@ public abstract class Square implements ISquare {
 	/**
 	 * @param boardLocation the boardLocation to set
 	 */
-	public void setBoardLocation(int boardLocation) {
+	public void setBoardLocation(int boardLocation)throws IllegalArgumentException {
+		if(boardLocation>=MIN_BOARD_LOCATION && boardLocation <= MAX_BOARD_LOCATION) {
 		this.boardLocation = boardLocation;
+		}else {
+			throw new IllegalArgumentException("Invalid board location");
+		}
 	}
 
 }
