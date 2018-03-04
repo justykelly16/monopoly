@@ -15,11 +15,8 @@ public class PubCrawl extends Square implements ISquare {
 	 * 
 	 */
 	public PubCrawl() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
-
-
 
 	/**
 	 * @param name

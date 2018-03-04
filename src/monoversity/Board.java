@@ -60,39 +60,39 @@ public class Board {
 
 		// determines the order of players by whoever rolls the highest number
 		boolean sameNumber = true;
+		boolean isPlayerOneTurn = true;
+		boolean isPlayerTwoTurn = false;
 		do {
 			System.out.println(p1.playerName);
 			d1.throwDice();
-			p1.calculatePlayerLoc(d1.getDiceNumber(), p1.getCurrentLocation());
+			
 
 			System.out.println(p2.playerName);
-			d1.throwDice();
-			p2.calculatePlayerLoc(d1.getDiceNumber(), p2.getCurrentLocation());
+			d2.throwDice();
+			
 
-			sameNumber = (p1.getCurrentLocation() == p2.getCurrentLocation());
+			sameNumber = (d1.getDiceNumber() == d2.getDiceNumber());
 
 			if (sameNumber) {
 				System.out.println("You both got the same value let's try that again");
-				p1.setCurrentLocation(0);
-				p2.setCurrentLocation(0);
+			
 			}
 		} while (sameNumber);
 
 		if (d1.getDiceNumber() > d2.getDiceNumber()) {
 			System.out.println(p1.playerName + " you got the highest value and will begin the game first\n");
 		} else {
-			p2.setPlayerName(p1.getPlayerName());
-			p1.setPlayerName(p2.getPlayerName());
+			isPlayerOneTurn = false;
+			isPlayerTwoTurn = true;
 
-			System.out.println(p1.playerName + " got the highest value and will now begin the game first as player 1\n");
+			System.out.println(p2.playerName + " got the highest value and will now begin the game first\n");
 		}
 
 		p1.setCurrentLocation(1);
 		p2.setCurrentLocation(1);
 
 		boolean winnerFound = false;
-		boolean isPlayerOneTurn = true;
-		boolean isPlayerTwoTurn = false;
+	
 
 		do {
 
